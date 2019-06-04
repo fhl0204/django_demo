@@ -16,9 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from my_app.views import add, index
+from my_app import views
 
 urlpatterns = [
     url(r'^$', index, name='home'),
     url(r'^add/', add),
     url(r'^admin/', admin.site.urls),
+    url('', views.index, name='index'),
+    url('<int:question_id>/', views.detail, name='detail'),
+    url('<int:question_id>/results/', views.results, name='results'),
+    url('<int:question_id>/vote/', views.vote, name='vote'),
 ]
